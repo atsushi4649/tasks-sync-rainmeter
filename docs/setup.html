@@ -12,12 +12,17 @@
 
 <h1>セットアップ（最初の 1 回だけ・約 10 分）</h1>
 <p>このスキンは、あなた自身の Google Cloud「OAuth クライアント」を使って、あなたの Google Tasks にアクセスします。データはあなたの PC と Google の間だけでやり取りされます。</p>
+<p><strong>必要なもの:</strong> 個人の Google（Gmail）アカウント。無料で、クレジットカードの登録も不要です。<br>
+<span class="muted">会社・学校のアカウントは、管理者が Google Cloud を使えないようにしている場合があります。</span></p>
 <p class="muted">Google の画面は時期によって表記が変わることがあります。下のリンクから直接開くのが確実です。</p>
 
 <h2>1. プロジェクトを作る</h2>
 <ol>
-<li><a href="https://console.cloud.google.com/projectcreate" target="_blank">プロジェクトの作成</a>を開く（Google アカウントでログイン）</li>
-<li>名前（例: <code>rainmeter-tasks</code>）を入れて「作成」。画面上部でそのプロジェクトが選ばれていることを確認</li>
+<li><a href="https://console.cloud.google.com/projectcreate" target="_blank">プロジェクトの作成</a>を開く（Google アカウントでログイン）
+  <ul><li>初めての場合は、国の選択と利用規約への同意を求められます</li></ul></li>
+<li>プロジェクト名: <code>rainmeter-tasks</code> など好きな名前</li>
+<li>場所（組織）: <strong>「組織なし」のままで OK</strong></li>
+<li>「作成」を押し、画面上部でそのプロジェクトが選ばれていることを確認</li>
 </ol>
 
 <h2>2. Google Tasks API を有効にする</h2>
@@ -30,9 +35,12 @@
 <li><a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth 同意画面</a>を開いて「開始」</li>
 <li>アプリ名: <code>Tasks Sync</code>、ユーザーサポートメール: 自分のアドレス</li>
 <li>対象: <strong>外部</strong></li>
-<li>連絡先: 自分のアドレス → 同意して「作成」</li>
-<li>左メニュー「<strong>対象</strong>」→「テストユーザー」→「Add users」で<strong>自分の Gmail アドレス</strong>を追加して保存
-  <ul><li>「不適格なアカウント」と出たら、数分待ってからもう一度試してください</li></ul></li>
+<li>連絡先情報: 自分のアドレス →「次へ」</li>
+<li>終了:「<strong>Google API サービス: ユーザーデータに関するポリシーに同意します</strong>」に<strong>チェック</strong>を入れて「続行」→「作成」
+  <ul><li>Google の API を使うアプリの作り手としての決まりごとに同意する項目です。自分で使うだけなら、特に気にすることはありません</li></ul></li>
+<li><strong>【忘れやすい】</strong>左メニュー「<strong>対象</strong>」→「テストユーザー」→「Add users」で<strong>自分の Gmail アドレス</strong>を追加して保存
+  <ul><li>これをしないと、ログイン時に「アクセスをブロック」「エラー 403: access_denied」になります</li>
+  <li>「不適格なアカウント」と出たら、数分待ってからもう一度試してください</li></ul></li>
 </ol>
 <p class="muted">ロゴはアップロードしないでください（Google の審査が必要になります）。</p>
 
@@ -73,9 +81,9 @@
 <h1 id="en">Setup (one time, ~10 min)</h1>
 <p>The skin uses <strong>your own</strong> Google Cloud OAuth client. Your data only travels between your PC and Google.</p>
 <ol>
-<li><a href="https://console.cloud.google.com/projectcreate" target="_blank">Create a project</a> (e.g. <code>rainmeter-tasks</code>) and make sure it is selected.</li>
+<li><a href="https://console.cloud.google.com/projectcreate" target="_blank">Create a project</a> (e.g. <code>rainmeter-tasks</code>). Location: <strong>"No organization" is fine</strong>. Make sure it is selected. (A personal Google account works; free, no credit card.)</li>
 <li>Enable the <a href="https://console.cloud.google.com/apis/library/tasks.googleapis.com" target="_blank">Google Tasks API</a>.</li>
-<li>Open the <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth consent screen</a> → Get started → app name <code>Tasks Sync</code>, your email, Audience <strong>External</strong>. Then <strong>Audience → Test users → Add users</strong>: add your own Gmail address. Do not upload a logo.</li>
+<li>Open the <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth consent screen</a> → Get started → app name <code>Tasks Sync</code>, your email, Audience <strong>External</strong>, contact email, then <strong>check "I agree to the Google API Services: User Data Policy"</strong> → Continue → Create. Then <strong>Audience → Test users → Add users</strong>: add your own Gmail address (without this you get "Error 403: access_denied"). Do not upload a logo.</li>
 <li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">Credentials</a> → Create credentials → OAuth client ID (or Clients → Create client) → <strong>Desktop app</strong> → <strong>Download JSON</strong>.</li>
 <li>Press the <strong>⟳</strong> button on the skin (the JSON is picked up from Downloads) → click "Click to sign in to Google" → allow. On "Google hasn't verified this app", choose <strong>Continue</strong>.</li>
 </ol>
