@@ -3,18 +3,6 @@
 Google Tasks をデスクトップで**双方向**に扱える Rainmeter スキン。
 A Rainmeter skin for **two-way** Google Tasks on your Windows desktop.
 
-| 操作 / Action | |
-|---|---|
-| ○ をクリック / click the circle | 完了 / complete |
-| タイトルをクリック / click a title | 編集 / edit |
-| ✕ | 削除 / delete |
-| ＋ タスクを追加 / Add a task | 追加 / add |
-| リスト名 ▾ / list name ▾ | 次のリストへ / next list |
-| ⟳ | 今すぐ同期 / sync now（自動同期は 5 分ごと / auto every 5 min） |
-
-サブタスクの表示、期限の表示（今日は青・過ぎたら赤）、日本語 / 英語対応。
-Subtasks, due dates (today = blue, overdue = red), Japanese / English UI.
-
 ## インストール / Install
 
 1. [Releases](https://github.com/atsushi4649/tasks-sync-rainmeter/releases) から `TasksSync_x.y.z.rmskin` をダウンロードしてダブルクリック
