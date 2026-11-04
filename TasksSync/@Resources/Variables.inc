@@ -13,8 +13,9 @@ PadX=10
 HeaderH=34
 RowH=20
 FooterH=30
-; transparent margin around the panel (illustro: 5)
+; transparent margin around the panel: left/top, right/bottom (illustro: 5 / 7)
 Inset=5
+InsetFar=7
 Radius=4
 
 ; ----- Fonts -----

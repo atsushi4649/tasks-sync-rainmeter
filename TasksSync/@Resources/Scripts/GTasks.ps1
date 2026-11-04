@@ -377,7 +377,7 @@ function Render-Tasks($lists, $list, $tasks) {
             elseif ($dd -eq [datetime]::Today) { $dueColor = '#ColorAccent#' }
         }
         $tx = $x + [int](2 * $CheckC) + 6
-        $reserve = 20; if ($due) { $reserve += 32 }
+        $reserve = 22; if ($due) { $reserve += 32 }
         $tw = $Width - $tx - $reserve
 
         [void]$sb.Append(@"
@@ -411,7 +411,7 @@ LeftMouseUpAction=[!WriteKeyValue Input TaskId $id "#DataDir#input.ini"][!SetOpt
 [TaskDel$i]
 Meter=String
 Group=Task$i
-X=$($Width - $PadX - 4)
+X=$($Width - $PadX - 6)
 Y=$cy
 StringAlign=CenterCenter
 Text=$iconDel
@@ -446,7 +446,7 @@ State=Hide
 [TaskDue$i]
 Meter=String
 Group=Task$i
-X=$($Width - $PadX - 14)
+X=$($Width - $PadX - 16)
 Y=$cy
 StringAlign=RightCenter
 Text=$due
