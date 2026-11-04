@@ -1,0 +1,13 @@
+# personal data - never commit
+client_secret*.json
+credentials.json
+token.dat
+Data/
+State.inc
+Tasks.inc
+input.ini
+state.json
+
+# build output
+dist/
+*.rmskin

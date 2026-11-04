@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup - Tasks Sync for Rainmeter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<p><a href="./">← Tasks Sync for Rainmeter</a> · <a href="#en">English</a></p>
+
+<h1>セットアップ（最初の 1 回だけ・約 10 分）</h1>
+<p>このスキンは、あなた自身の Google Cloud「OAuth クライアント」を使って、あなたの Google Tasks にアクセスします。データはあなたの PC と Google の間だけでやり取りされます。</p>
+<p class="muted">Google の画面は時期によって表記が変わることがあります。下のリンクから直接開くのが確実です。</p>
+
+<h2>1. プロジェクトを作る</h2>
+<ol>
+<li><a href="https://console.cloud.google.com/projectcreate" target="_blank">プロジェクトの作成</a>を開く（Google アカウントでログイン）</li>
+<li>名前（例: <code>rainmeter-tasks</code>）を入れて「作成」。画面上部でそのプロジェクトが選ばれていることを確認</li>
+</ol>
+
+<h2>2. Google Tasks API を有効にする</h2>
+<ol>
+<li><a href="https://console.cloud.google.com/apis/library/tasks.googleapis.com" target="_blank">Google Tasks API</a> を開いて「有効にする」</li>
+</ol>
+
+<h2>3. OAuth 同意画面を設定する</h2>
+<ol>
+<li><a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth 同意画面</a>を開いて「開始」</li>
+<li>アプリ名: <code>Tasks Sync</code>、ユーザーサポートメール: 自分のアドレス</li>
+<li>対象: <strong>外部</strong></li>
+<li>連絡先: 自分のアドレス → 同意して「作成」</li>
+<li>左メニュー「<strong>対象</strong>」→「テストユーザー」→「Add users」で<strong>自分の Gmail アドレス</strong>を追加して保存
+  <ul><li>「不適格なアカウント」と出たら、数分待ってからもう一度試してください</li></ul></li>
+</ol>
+<p class="muted">ロゴはアップロードしないでください（Google の審査が必要になります）。</p>
+
+<h2>4. OAuth クライアントを作る</h2>
+<ol>
+<li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">認証情報</a>を開き、「認証情報を作成」→「OAuth クライアント ID」（新しい画面では「クライアント」→「クライアントを作成」）</li>
+<li>アプリケーションの種類: <strong>デスクトップ アプリ</strong> → 「作成」</li>
+<li>「<strong>JSON をダウンロード</strong>」（<code>client_secret_〜.json</code> がダウンロード フォルダに保存されます）</li>
+</ol>
+
+<h2>5. ログイン</h2>
+<ol>
+<li>スキン右上の <strong>⟳（同期ボタン）</strong>を押す → ダウンロード フォルダの JSON が自動で読み込まれ、「クリックして Google にログイン」に変わります</li>
+<li>クリック → ブラウザで許可</li>
+<li>「Google はこのアプリを確認していません」と出たら「<strong>続行</strong>」（または「詳細」→「安全ではないページに移動」）。自分で作ったアプリなので問題ありません</li>
+<li>タスクが表示されたら完了です 🎉</li>
+</ol>
+
+<h2>7 日ごとの再ログインについて</h2>
+<p>アプリが「テスト中」のままだと、Google の仕様で 7 日ごとにログインが切れます。切れたらスキンの「クリックして Google にログイン」を押すだけで戻ります。</p>
+<p>再ログインをなくしたい場合は、OAuth 同意画面の「ブランディング」で次を入力し、「対象」で「アプリを公開」を押してください。</p>
+<ul>
+<li>アプリケーションのホームページ: <code>https://atsushi4649.github.io/tasks-sync-rainmeter/</code></li>
+<li>プライバシー ポリシー: <code>https://atsushi4649.github.io/tasks-sync-rainmeter/privacy.html</code></li>
+<li>承認済みドメイン: <code>atsushi4649.github.io</code></li>
+</ul>
+
+<h2>困ったとき</h2>
+<ul>
+<li><strong>「アクセスをブロック」「403: access_denied」</strong> … 手順 3-5 のテストユーザー追加ができていません</li>
+<li><strong>JSON が読み込まれない</strong> … スキンを右クリック → データフォルダを開く → そこに <code>client_secret_〜.json</code> を置いて ⟳</li>
+<li><strong>右上に ! が出る</strong> … マウスを乗せるとエラー内容が出ます。<a href="https://github.com/atsushi4649/tasks-sync-rainmeter/issues">Issues</a> で教えてください</li>
+<li><strong>ログアウトしたい</strong> … <a href="https://myaccount.google.com/permissions">Google アカウントのアクセス権</a>から取り消し、<code>%APPDATA%\Rainmeter\TasksSync</code> を削除</li>
+</ul>
+
+<hr>
+
+<h1 id="en">Setup (one time, ~10 min)</h1>
+<p>The skin uses <strong>your own</strong> Google Cloud OAuth client. Your data only travels between your PC and Google.</p>
+<ol>
+<li><a href="https://console.cloud.google.com/projectcreate" target="_blank">Create a project</a> (e.g. <code>rainmeter-tasks</code>) and make sure it is selected.</li>
+<li>Enable the <a href="https://console.cloud.google.com/apis/library/tasks.googleapis.com" target="_blank">Google Tasks API</a>.</li>
+<li>Open the <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth consent screen</a> → Get started → app name <code>Tasks Sync</code>, your email, Audience <strong>External</strong>. Then <strong>Audience → Test users → Add users</strong>: add your own Gmail address. Do not upload a logo.</li>
+<li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">Credentials</a> → Create credentials → OAuth client ID (or Clients → Create client) → <strong>Desktop app</strong> → <strong>Download JSON</strong>.</li>
+<li>Press the <strong>⟳</strong> button on the skin (the JSON is picked up from Downloads) → click "Click to sign in to Google" → allow. On "Google hasn't verified this app", choose <strong>Continue</strong>.</li>
+</ol>
+<p>In Testing mode Google expires the sign-in every 7 days; just click sign in again. To avoid that, set Homepage <code>https://atsushi4649.github.io/tasks-sync-rainmeter/</code>, Privacy policy <code>https://atsushi4649.github.io/tasks-sync-rainmeter/privacy.html</code>, authorized domain <code>atsushi4649.github.io</code> under Branding, then <strong>Publish app</strong> under Audience.</p>
+<p>Sign out: revoke at <a href="https://myaccount.google.com/permissions">Google Account permissions</a> and delete <code>%APPDATA%\Rainmeter\TasksSync</code>.</p>
+</main>
+</body>
+</html>

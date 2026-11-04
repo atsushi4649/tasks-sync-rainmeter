@@ -1,0 +1,14 @@
+:root { --bg: #ffffff; --fg: #1f2328; --muted: #656d76; --link: #0969da; --line: #d0d7de; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0d1117; --fg: #e6edf3; --muted: #8d96a0; --link: #4493f8; --line: #30363d; }
+}
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "Segoe UI", "Yu Gothic UI", "Hiragino Sans", sans-serif; line-height: 1.7; }
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+a { color: var(--link); }
+h1 { font-size: 1.8rem; margin: 0.5em 0 0.3em; }
+h2 { font-size: 1.15rem; margin-top: 1.8em; }
+.lead { font-size: 1.15rem; }
+.muted { color: var(--muted); }
+code { font-size: 0.9em; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }

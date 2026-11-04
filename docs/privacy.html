@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy - Tasks Sync for Rainmeter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<p><a href="./">← Tasks Sync for Rainmeter</a></p>
+
+<h1>プライバシーポリシー</h1>
+<p class="muted">最終更新日: 2026年11月5日</p>
+
+<p>Tasks Sync for Rainmeter（以下「本スキン」）は、Windows 用デスクトップカスタマイズツール Rainmeter のスキンです。本スキンは利用者の PC 上だけで動作し、作者はサーバーを運営していません。</p>
+
+<h2>取得する情報</h2>
+<p>本スキンは Google Tasks API（スコープ: <code>https://www.googleapis.com/auth/tasks</code>）を使い、利用者が許可した Google アカウントのタスクリストとタスク（タイトル、期限、完了状態、並び順など）を読み取り・作成・更新・削除します。</p>
+
+<h2>情報の使い方</h2>
+<ul>
+<li>取得した情報は、利用者のデスクトップにタスクを表示し、利用者の操作（完了・追加・編集・削除・リスト切り替え）を Google Tasks に反映するためだけに使います。</li>
+<li>データは利用者の PC と Google の間で直接やり取りされます。作者や第三者のサーバーへは一切送信しません。</li>
+<li>広告、分析、AI の学習、販売、その他の目的には使用しません。</li>
+</ul>
+
+<h2>保存する情報</h2>
+<ul>
+<li>ログイン状態を保つためのリフレッシュトークンを、利用者の PC 上に Windows DPAPI で暗号化して保存します（同じ PC の同じ Windows ユーザーのみ復号可能）。</li>
+<li>表示用に、現在のリストのタスク内容を利用者の PC 上の Rainmeter 設定ファイルに一時的に書き出します。</li>
+<li>これらはすべて利用者の PC の <code>%APPDATA%\Rainmeter\TasksSync</code> フォルダに保存されます。</li>
+</ul>
+
+<h2>Google API サービスのユーザーデータに関するポリシー</h2>
+<p>本スキンによる Google API から受け取った情報の使用および他のアプリへの転送は、限定的使用の要件を含む <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API サービスのユーザーデータに関するポリシー</a>を遵守します。</p>
+
+<h2>アクセスの取り消し</h2>
+<p><a href="https://myaccount.google.com/permissions">Google アカウントのアクセス権の管理</a>から本スキンのアクセスをいつでも取り消せます。PC 上のデータは、<code>%APPDATA%\Rainmeter\TasksSync</code> フォルダを削除すると消去されます。</p>
+
+<h2>お問い合わせ</h2>
+<p><a href="https://github.com/atsushi4649/tasks-sync-rainmeter/issues">GitHub Issues</a> からご連絡ください。</p>
+
+<hr>
+
+<h1 lang="en">Privacy Policy (English)</h1>
+<p class="muted">Last updated: November 5, 2026</p>
+<div lang="en">
+<p>Tasks Sync for Rainmeter ("the skin") is a skin for Rainmeter, a desktop customization tool for Windows. It runs only on the user's PC. The author operates no servers.</p>
+<h2>Data accessed</h2>
+<p>The skin uses the Google Tasks API (scope <code>https://www.googleapis.com/auth/tasks</code>) to read, create, update and delete the task lists and tasks (title, due date, status, order) of the Google account the user authorizes.</p>
+<h2>How data is used</h2>
+<ul>
+<li>Data is used only to display the user's tasks on their desktop and to apply the user's own actions (complete, add, edit, delete, switch list) to Google Tasks.</li>
+<li>Data travels directly between the user's PC and Google. Nothing is sent to the author or any third party.</li>
+<li>Data is never used for advertising, analytics, AI training, or sold.</li>
+</ul>
+<h2>Data stored</h2>
+<ul>
+<li>A refresh token is stored on the user's PC, encrypted with Windows DPAPI (decryptable only by the same Windows user on the same PC).</li>
+<li>The tasks of the current list are written to local Rainmeter files for display.</li>
+<li>All of it is stored in <code>%APPDATA%\Rainmeter\TasksSync</code> on the user's PC.</li>
+</ul>
+<h2>Google API Services User Data Policy</h2>
+<p>The skin's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+<h2>Revoking access</h2>
+<p>You can revoke access at any time at <a href="https://myaccount.google.com/permissions">Google Account permissions</a>. Delete <code>%APPDATA%\Rainmeter\TasksSync</code> to erase local data.</p>
+<h2>Contact</h2>
+<p>Please use <a href="https://github.com/atsushi4649/tasks-sync-rainmeter/issues">GitHub Issues</a>.</p>
+</div>
+</main>
+</body>
+</html>
