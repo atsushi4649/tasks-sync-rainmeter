@@ -38,20 +38,27 @@
 <li>連絡先情報: 自分のアドレス →「次へ」</li>
 <li>終了:「<strong>Google API サービス: ユーザーデータに関するポリシーに同意します</strong>」に<strong>チェック</strong>を入れて「続行」→「作成」
   <ul><li>Google の API を使うアプリの作り手としての決まりごとに同意する項目です。自分で使うだけなら、特に気にすることはありません</li></ul></li>
-<li><strong>【忘れやすい】</strong>左メニュー「<strong>対象</strong>」→「テストユーザー」→「Add users」で<strong>自分の Gmail アドレス</strong>を追加して保存
-  <ul><li>これをしないと、ログイン時に「アクセスをブロック」「エラー 403: access_denied」になります</li>
-  <li>「不適格なアカウント」と出たら、数分待ってからもう一度試してください</li></ul></li>
 </ol>
 <p class="muted">ロゴはアップロードしないでください（Google の審査が必要になります）。</p>
 
-<h2>4. OAuth クライアントを作る</h2>
+<h2>4. 自分をテストユーザーに追加する</h2>
+<p>作ったアプリは最初「テスト中」の状態で、登録したテストユーザーしかログインできません。自分を登録します。</p>
+<ol>
+<li><a href="https://console.cloud.google.com/auth/audience" target="_blank">対象</a>を開く（OAuth 同意画面の左メニュー「対象」）</li>
+<li>「テストユーザー」の「<strong>+ Add users</strong>」→ <strong>自分の Gmail アドレス</strong>を入力 →「保存」</li>
+<li>一覧に自分のアドレスが表示されていれば OK
+  <ul><li>「不適格なアカウント」という表示が出ても、一覧に入っていれば問題ありません。入っていなければ、数分待ってからもう一度追加してください</li></ul></li>
+</ol>
+<p class="muted">この手順を飛ばすと、ログイン時に「アクセスをブロック」「エラー 403: access_denied」になります。</p>
+
+<h2>5. OAuth クライアントを作る</h2>
 <ol>
 <li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">認証情報</a>を開き、「認証情報を作成」→「OAuth クライアント ID」（新しい画面では「クライアント」→「クライアントを作成」）</li>
 <li>アプリケーションの種類: <strong>デスクトップ アプリ</strong> → 「作成」</li>
 <li>「<strong>JSON をダウンロード</strong>」（<code>client_secret_〜.json</code> がダウンロード フォルダに保存されます）</li>
 </ol>
 
-<h2>5. ログイン</h2>
+<h2>6. ログイン</h2>
 <ol>
 <li>スキン右上の <strong>⟳（同期ボタン）</strong>を押す → ダウンロード フォルダの JSON が自動で読み込まれ、「クリックして Google にログイン」に変わります</li>
 <li>クリック → ブラウザで許可</li>
@@ -70,7 +77,7 @@
 
 <h2>困ったとき</h2>
 <ul>
-<li><strong>「アクセスをブロック」「403: access_denied」</strong> … 手順 3-5 のテストユーザー追加ができていません</li>
+<li><strong>「アクセスをブロック」「403: access_denied」</strong> … 手順 4 のテストユーザー追加ができていません。一覧に自分のアドレスがあるか確認してください</li>
 <li><strong>JSON が読み込まれない</strong> … スキンを右クリック → データフォルダを開く → そこに <code>client_secret_〜.json</code> を置いて ⟳</li>
 <li><strong>右上に ! が出る</strong> … マウスを乗せるとエラー内容が出ます。<a href="https://github.com/atsushi4649/tasks-sync-rainmeter/issues">Issues</a> で教えてください</li>
 <li><strong>ログアウトしたい</strong> … <a href="https://myaccount.google.com/permissions">Google アカウントのアクセス権</a>から取り消し、<code>%APPDATA%\Rainmeter\TasksSync</code> を削除</li>
@@ -83,7 +90,8 @@
 <ol>
 <li><a href="https://console.cloud.google.com/projectcreate" target="_blank">Create a project</a> (e.g. <code>rainmeter-tasks</code>). Location: <strong>"No organization" is fine</strong>. Make sure it is selected. (A personal Google account works; free, no credit card.)</li>
 <li>Enable the <a href="https://console.cloud.google.com/apis/library/tasks.googleapis.com" target="_blank">Google Tasks API</a>.</li>
-<li>Open the <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth consent screen</a> → Get started → app name <code>Tasks Sync</code>, your email, Audience <strong>External</strong>, contact email, then <strong>check "I agree to the Google API Services: User Data Policy"</strong> → Continue → Create. Then <strong>Audience → Test users → Add users</strong>: add your own Gmail address (without this you get "Error 403: access_denied"). Do not upload a logo.</li>
+<li>Open the <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth consent screen</a> → Get started → app name <code>Tasks Sync</code>, your email, Audience <strong>External</strong>, contact email, then <strong>check "I agree to the Google API Services: User Data Policy"</strong> → Continue → Create. Do not upload a logo.</li>
+<li><strong>Add yourself as a test user:</strong> open <a href="https://console.cloud.google.com/auth/audience" target="_blank">Audience</a> → Test users → <strong>+ Add users</strong> → your Gmail address → Save. If it shows "ineligible account" but your address is in the list, you're fine. (Skipping this step causes "Error 403: access_denied".)</li>
 <li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">Credentials</a> → Create credentials → OAuth client ID (or Clients → Create client) → <strong>Desktop app</strong> → <strong>Download JSON</strong>.</li>
 <li>Press the <strong>⟳</strong> button on the skin (the JSON is picked up from Downloads) → click "Click to sign in to Google" → allow. On "Google hasn't verified this app", choose <strong>Continue</strong>.</li>
 </ol>
