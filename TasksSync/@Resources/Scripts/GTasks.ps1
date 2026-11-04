@@ -10,7 +10,9 @@ param(
     [string]$Config = '',
     # personal data (token, client_secret, task cache) lives OUTSIDE the skin folder,
     # so updating / sharing the skin never touches it. Default: %APPDATA%\Rainmeter\TasksSync
-    [string]$DataDir = ''
+    [string]$DataDir = '',
+    # layout (px) - from Variables.inc
+    [int]$HeaderH = 34, [int]$RowH = 20, [int]$FooterH = 30, [int]$PadX = 10, [int]$Inset = 5
 )
 
 $ErrorActionPreference = 'Stop'
@@ -27,7 +29,7 @@ $StateInc  = Join-Path $DataDir 'State.inc'
 if (-not (Test-Path $DataDir)) { New-Item -ItemType Directory -Path $DataDir | Out-Null }
 
 # Layout (px)
-$HeaderH = 44; $RowH = 32; $FooterH = 40; $PadX = 14; $Indent = 22
+$RowTop = $HeaderH + 4; $Indent = [int]($RowH * 0.7); $CheckR = [Math]::Round($RowH * 0.27, 1); $CheckC = $CheckR + 1.5; $InputH = $RowH + 4
 
 $Strings = @{
     ja = @{
@@ -288,11 +290,11 @@ function Build-State($o) {
     return $sb.ToString()
 }
 function Get-BaseVars([int]$rows, [string]$title, [string]$arrow, [int]$addHidden) {
-    $bg = $HeaderH + $rows * $RowH + $FooterH
+    $bg = $RowTop + $rows * $RowH + $FooterH
+    $footerY = $bg - $Inset - [int](($FooterH - $Inset) / 2)
     $v = [ordered]@{
-        PadX = $PadX; HeaderH = $HeaderH; RowH = $RowH; FooterH = $FooterH
-        BGHeight = $bg
-        AddInputX = $PadX + 18; AddInputY = $bg - $FooterH + 8; InputW = $Width - 2 * $PadX - 18
+        BGHeight = $bg; FooterY = $footerY; InputH = $InputH
+        AddInputX = $PadX + 14; AddInputY = $footerY - [int]($InputH / 2); InputW = $Width - 2 * $PadX - 14
         ListTitle = (Esc-Text $title); ListArrow = $arrow
         AddHidden = $addHidden; ErrorHidden = 1; ErrorMsg = ''
         Demo = [int]($Action -eq 'demo')
@@ -306,15 +308,13 @@ function Message-Meter([int]$y, [int]$h, [string]$text, [string]$action) {
 [MeterMsg]
 Meter=String
 X=$PadX
-Y=$($y + 6)
+Y=$($y + 2)
 W=$($Width - 2 * $PadX)
-H=$($h - 12)
+H=$($h - 4)
 ClipString=2
 Text=$(Esc-Text $text)
-FontFace=#Font#
-FontSize=#FontSize#
+MeterStyle=StyleText
 FontColor=#ColorSub#
-AntiAlias=1
 SolidColor=0,0,0,1
 $a
 
@@ -323,7 +323,7 @@ $a
 function Render-Message([string]$key, [string]$action) {
     $rows = 3
     $v = Get-BaseVars $rows 'Tasks' '' 1
-    $inc = Message-Meter $HeaderH ($rows * $RowH) (Tr $key) $action
+    $inc = Message-Meter $RowTop ($rows * $RowH) (Tr $key) $action
     $c1 = Write-IfChanged $StateInc (Build-State $v)
     $c2 = Write-IfChanged $TasksInc $inc
     if ($c1 -or $c2) { Refresh-Skin }
@@ -360,7 +360,7 @@ function Render-Tasks($lists, $list, $tasks) {
     $iconDel = '[\xE711]'
     for ($i = 1; $i -le $shown; $i++) {
         $r = $ordered[$i - 1]; $t = $r.Task
-        $y = $HeaderH + ($i - 1) * $RowH
+        $y = $RowTop + ($i - 1) * $RowH
         $cy = $y + [int]($RowH / 2)
         $x = $PadX + $r.Depth * $Indent
         $title = Esc-Text $t.title
@@ -376,8 +376,8 @@ function Render-Tasks($lists, $list, $tasks) {
             if ($dd -lt [datetime]::Today) { $dueColor = '#ColorDanger#' }
             elseif ($dd -eq [datetime]::Today) { $dueColor = '#ColorAccent#' }
         }
-        $tx = $x + 26
-        $reserve = 32; if ($due) { $reserve += 44 }
+        $tx = $x + [int](2 * $CheckC) + 6
+        $reserve = 20; if ($due) { $reserve += 32 }
         $tw = $Width - $tx - $reserve
 
         [void]$sb.Append(@"
@@ -385,12 +385,12 @@ function Render-Tasks($lists, $list, $tasks) {
 Meter=Shape
 Group=Task$i
 X=$x
-Y=$($cy - 9)
-Shape=Ellipse 9,9,7.5 | Extend CheckStyle
-CheckStyle=Fill Color 0,0,0,1 | StrokeWidth 1.5 | Stroke Color #ColorSub#
-MouseOverAction=[!SetOption TaskCheck$i CheckStyle "Fill Color #ColorAccentSoft# | StrokeWidth 1.5 | Stroke Color #ColorAccent#"][!UpdateMeter TaskCheck$i][!Redraw]
-MouseLeaveAction=[!SetOption TaskCheck$i CheckStyle "Fill Color 0,0,0,1 | StrokeWidth 1.5 | Stroke Color #ColorSub#"][!UpdateMeter TaskCheck$i][!Redraw]
-LeftMouseUpAction=[!SetOption TaskCheck$i CheckStyle "Fill Color #ColorAccent# | StrokeWidth 1.5 | Stroke Color #ColorAccent#"][!SetOption TaskCheck$i MouseLeaveAction ""][!SetOption TaskTitle$i MouseLeaveAction ""][!SetOption TaskTitle$i InlineSetting "Strikethrough"][!SetOption TaskTitle$i FontColor "#ColorSub#"][!UpdateMeterGroup Task$i][!Redraw][!CommandMeasure MeasureDone$i "Run"]
+Y=$($cy - $CheckC)
+Shape=Ellipse $CheckC,$CheckC,$CheckR | Extend CheckStyle
+CheckStyle=Fill Color 0,0,0,1 | StrokeWidth 1.2 | Stroke Color #ColorSub#
+MouseOverAction=[!SetOption TaskCheck$i CheckStyle "Fill Color #ColorAccentSoft# | StrokeWidth 1.2 | Stroke Color #ColorAccent#"][!UpdateMeter TaskCheck$i][!Redraw]
+MouseLeaveAction=[!SetOption TaskCheck$i CheckStyle "Fill Color 0,0,0,1 | StrokeWidth 1.2 | Stroke Color #ColorSub#"][!UpdateMeter TaskCheck$i][!Redraw]
+LeftMouseUpAction=[!SetOption TaskCheck$i CheckStyle "Fill Color #ColorAccent# | StrokeWidth 1.2 | Stroke Color #ColorAccent#"][!SetOption TaskCheck$i MouseLeaveAction ""][!SetOption TaskTitle$i MouseLeaveAction ""][!SetOption TaskTitle$i InlineSetting "Strikethrough"][!SetOption TaskTitle$i FontColor "#ColorSub#"][!UpdateMeterGroup Task$i][!Redraw][!CommandMeasure MeasureDone$i "Run"]
 
 [TaskTitle$i]
 Meter=String
@@ -402,28 +402,25 @@ ClipString=1
 StringAlign=LeftCenter
 Text=$title
 ToolTipText=$title
-FontFace=#Font#
-FontSize=#FontSize#
-FontColor=#ColorText#
-AntiAlias=1
+MeterStyle=StyleText
 SolidColor=0,0,0,1
 MouseOverAction=[!SetOption TaskTitle$i FontColor "#ColorAccent#"][!UpdateMeter TaskTitle$i][!Redraw]
 MouseLeaveAction=[!SetOption TaskTitle$i FontColor "#ColorText#"][!UpdateMeter TaskTitle$i][!Redraw]
-LeftMouseUpAction=[!WriteKeyValue Input TaskId $id "#DataDir#input.ini"][!SetOption MeasureInput DefaultValue "#*T$i*#"][!SetOption MeasureInput X $($tx - 4)][!SetOption MeasureInput Y $($cy - 12)][!SetOption MeasureInput W $($tw + 8)][!UpdateMeasure MeasureInput][!CommandMeasure MeasureInput "ExecuteBatch 2"]
+LeftMouseUpAction=[!WriteKeyValue Input TaskId $id "#DataDir#input.ini"][!SetOption MeasureInput DefaultValue "#*T$i*#"][!SetOption MeasureInput X $($tx - 3)][!SetOption MeasureInput Y $($cy - [int]($InputH / 2))][!SetOption MeasureInput W $($tw + 8)][!UpdateMeasure MeasureInput][!CommandMeasure MeasureInput "ExecuteBatch 2"]
 
 [TaskDel$i]
 Meter=String
 Group=Task$i
-X=$($Width - 18)
+X=$($Width - $PadX - 4)
 Y=$cy
 StringAlign=CenterCenter
 Text=$iconDel
 FontFace=#IconFont#
-FontSize=8
+FontSize=7
 FontColor=#ColorFaint#
 AntiAlias=1
 SolidColor=0,0,0,1
-Padding=5,4,5,4
+Padding=4,3,4,3
 MouseOverAction=[!SetOption TaskDel$i FontColor "#ColorDanger#"][!UpdateMeter TaskDel$i][!Redraw]
 MouseLeaveAction=[!SetOption TaskDel$i FontColor "#ColorFaint#"][!UpdateMeter TaskDel$i][!Redraw]
 LeftMouseUpAction=[!HideMeterGroup Task$i][!Redraw][!CommandMeasure MeasureDel$i "Run"]
@@ -449,23 +446,22 @@ State=Hide
 [TaskDue$i]
 Meter=String
 Group=Task$i
-X=$($Width - 32)
+X=$($Width - $PadX - 14)
 Y=$cy
 StringAlign=RightCenter
 Text=$due
-FontFace=#Font#
+MeterStyle=StyleText
 FontSize=#FontSizeSmall#
 FontColor=$dueColor
-AntiAlias=1
 
 
 "@)
         }
     }
     if ($total -eq 0) {
-        [void]$sb.Append((Message-Meter $HeaderH $RowH (Tr 'empty') ''))
+        [void]$sb.Append((Message-Meter $RowTop $RowH (Tr 'empty') ''))
     } elseif ($total -gt $shown) {
-        [void]$sb.Append((Message-Meter ($HeaderH + $shown * $RowH) $RowH ((Tr 'more') -f ($total - $shown)) ''))
+        [void]$sb.Append((Message-Meter ($RowTop + $shown * $RowH) $RowH ((Tr 'more') -f ($total - $shown)) ''))
     }
 
     $c1 = Write-IfChanged $StateInc (Build-State $v)
