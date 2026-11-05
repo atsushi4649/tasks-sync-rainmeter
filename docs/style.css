@@ -12,3 +12,6 @@ h2 { font-size: 1.15rem; margin-top: 1.8em; }
 .muted { color: var(--muted); }
 code { font-size: 0.9em; }
 hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
+a.btn { display: inline-block; margin: 4px 0; padding: 6px 14px; border-radius: 6px;
+  background: #eb9f00; color: #111; font-weight: 600; text-decoration: none; }
+a.btn:hover { background: #ffb31a; }

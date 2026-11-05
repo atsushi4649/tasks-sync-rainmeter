@@ -14,11 +14,11 @@
 <p>このスキンは、あなた自身の Google Cloud「OAuth クライアント」を使って、あなたの Google Tasks にアクセスします。データはあなたの PC と Google の間だけでやり取りされます。</p>
 <p><strong>必要なもの:</strong> 個人の Google（Gmail）アカウント。無料で、クレジットカードの登録も不要です。<br>
 <span class="muted">会社・学校のアカウントは、管理者が Google Cloud を使えないようにしている場合があります。</span></p>
-<p class="muted">Google の画面は時期によって表記が変わることがあります。下のリンクから直接開くのが確実です。</p>
+<p class="muted">オレンジのボタンを押すと、Google Cloud の該当ページが新しいタブで開きます。Google の画面は時期によって表記が変わることがあるので、ボタンから開くのが確実です。</p>
 
 <h2>1. プロジェクトを作る</h2>
 <ol>
-<li><a href="https://console.cloud.google.com/projectcreate" target="_blank">プロジェクトの作成</a>を開く（Google アカウントでログイン）
+<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/projectcreate" target="_blank">プロジェクトの作成ページを開く ↗</a><br>（Google アカウントでログイン）
   <ul><li>初めての場合は、国の選択と利用規約への同意を求められます</li></ul></li>
 <li>プロジェクト名: <code>rainmeter-tasks</code> など好きな名前</li>
 <li>場所（組織）: <strong>「組織なし」のままで OK</strong></li>
@@ -27,12 +27,14 @@
 
 <h2>2. Google Tasks API を有効にする</h2>
 <ol>
-<li><a href="https://console.cloud.google.com/apis/library/tasks.googleapis.com" target="_blank">Google Tasks API</a> を開いて「有効にする」</li>
+<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/apis/library/tasks.googleapis.com" target="_blank">Google Tasks API のページを開く ↗</a></li>
+<li>開いたページの青い「<strong>有効にする</strong>」を押す（「管理」と表示されていれば、すでに有効です）</li>
 </ol>
 
 <h2>3. OAuth 同意画面を設定する</h2>
 <ol>
-<li><a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth 同意画面</a>を開いて「開始」</li>
+<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth 同意画面を開く ↗</a></li>
+<li>開いたページの「<strong>開始</strong>」を押す</li>
 <li>アプリ名: <code>Tasks Sync</code>、ユーザーサポートメール: 自分のアドレス</li>
 <li>対象: <strong>外部</strong></li>
 <li>連絡先情報: 自分のアドレス →「次へ」</li>
@@ -44,18 +46,21 @@
 <h2>4. アプリを「本番環境」にする</h2>
 <p>作ったアプリは最初「テスト中」で、そのままではログインできません。本番環境に切り替えます（自分専用なので Google の審査は不要です）。</p>
 <ol>
-<li><a href="https://console.cloud.google.com/auth/branding" target="_blank">ブランディング</a>を開き、次の 3 つを入力して「保存」
+<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/auth/branding" target="_blank">ブランディングのページを開く ↗</a></li>
+<li>次の 3 つを入力して、いちばん下の「<strong>保存</strong>」を押す
   <ul>
   <li>アプリケーションのホームページ: <code>https://atsushi4649.github.io/tasks-sync-rainmeter/</code></li>
   <li>アプリケーション プライバシー ポリシー リンク: <code>https://atsushi4649.github.io/tasks-sync-rainmeter/privacy.html</code></li>
   <li>承認済みドメイン（「+ ドメインの追加」）: <code>atsushi4649.github.io</code></li>
   </ul></li>
-<li><a href="https://console.cloud.google.com/auth/audience" target="_blank">対象</a>を開き、「<strong>アプリを公開</strong>」→「確認」</li>
+<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/auth/audience" target="_blank">対象のページを開く ↗</a></li>
+<li>「<strong>アプリを公開</strong>」→「確認」を押す</li>
 <li>公開ステータスが「<strong>本番環境</strong>」になれば OK</li>
 </ol>
 <h2>5. OAuth クライアントを作る</h2>
 <ol>
-<li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">認証情報</a>を開き、「認証情報を作成」→「OAuth クライアント ID」（新しい画面では「クライアント」→「クライアントを作成」）</li>
+<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/apis/credentials" target="_blank">認証情報のページを開く ↗</a></li>
+<li>「<strong>認証情報を作成</strong>」→「<strong>OAuth クライアント ID</strong>」を押す（新しい画面では「クライアント」→「クライアントを作成」）</li>
 <li>アプリケーションの種類: <strong>デスクトップ アプリ</strong> → 「作成」</li>
 <li>「<strong>JSON をダウンロード</strong>」（<code>client_secret_〜.json</code> がダウンロード フォルダに保存されます）</li>
 </ol>
