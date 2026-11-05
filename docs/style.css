@@ -15,3 +15,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
 a.btn { display: inline-block; margin: 4px 0; padding: 6px 14px; border-radius: 6px;
   background: #eb9f00; color: #111; font-weight: 600; text-decoration: none; }
 a.btn:hover { background: #ffb31a; }
+a.btn.secondary { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+a.btn.secondary:hover { border-color: var(--muted); }
+.shots { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+.shots img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,.25); }

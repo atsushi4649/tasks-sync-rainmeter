@@ -4,7 +4,7 @@ param(
     [string]$Action = 'sync',
     [string]$TaskId = '',
     [string]$Lang = 'ja',
-    [int]$Width = 320,
+    [int]$Width = 210,
     [int]$MaxTasks = 15,
     [string]$Rainmeter = '',
     [string]$Config = '',
@@ -478,13 +478,25 @@ try {
     if ($Action -eq 'demo') {
         # offline sample data (for layout check / screenshots)
         $today = (Get-Date).ToString('yyyy-MM-dd')
+        $tomorrow = (Get-Date).AddDays(1).ToString('yyyy-MM-dd')
+        $past = (Get-Date).AddDays(-2).ToString('yyyy-MM-dd')
+        if ($Lang -eq 'ja') {
+            $n = @('牛乳と卵を買う', '企画書を仕上げる', '参考資料を集める', '構成案をまとめる', '歯医者の予約をする', '図書館に本を返す', '週末の旅行の準備')
+            $listName = 'マイタスク'
+        } else {
+            $n = @('Buy milk and eggs', 'Finish the proposal', 'Gather references', 'Draft the outline', 'Book a dentist appointment', 'Return library books', 'Pack for the weekend trip')
+            $listName = 'My Tasks'
+        }
         $demo = @(
-            [pscustomobject]@{ id = 'd1'; title = '牛乳を買う'; position = '001'; due = "$($today)T00:00:00.000Z" }
-            [pscustomobject]@{ id = 'd2'; title = 'Rainmeter skin を公開する'; position = '002' }
-            [pscustomobject]@{ id = 'd3'; title = 'README を書く'; position = '001'; parent = 'd2' }
-            [pscustomobject]@{ id = 'd4'; title = 'とても長いタイトルのタスクはこのように省略記号で切り詰めて表示されます'; position = '003'; due = '2026-01-01T00:00:00.000Z' }
+            [pscustomobject]@{ id = 'd1'; title = $n[0]; position = '001'; due = "$($today)T00:00:00.000Z" }
+            [pscustomobject]@{ id = 'd2'; title = $n[1]; position = '002'; due = "$($tomorrow)T00:00:00.000Z" }
+            [pscustomobject]@{ id = 'd3'; title = $n[2]; position = '001'; parent = 'd2' }
+            [pscustomobject]@{ id = 'd4'; title = $n[3]; position = '002'; parent = 'd2' }
+            [pscustomobject]@{ id = 'd5'; title = $n[4]; position = '003'; due = "$($past)T00:00:00.000Z" }
+            [pscustomobject]@{ id = 'd6'; title = $n[5]; position = '004' }
+            [pscustomobject]@{ id = 'd7'; title = $n[6]; position = '005' }
         )
-        Render-Tasks @([pscustomobject]@{ title = 'マイタスク' }, [pscustomobject]@{ title = 'Work' }) ([pscustomobject]@{ title = 'マイタスク' }) $demo
+        Render-Tasks @([pscustomobject]@{ title = $listName }, [pscustomobject]@{ title = 'Work' }) ([pscustomobject]@{ title = $listName }) $demo
         return
     }
     $client = Get-Client

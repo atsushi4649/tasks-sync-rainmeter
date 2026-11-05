@@ -3,6 +3,8 @@
 Google Tasks をデスクトップで**双方向**に扱える Rainmeter スキン。
 A Rainmeter skin for **two-way** Google Tasks on your Windows desktop.
 
+<img src="docs/screenshot-ja.png" width="266" alt="screenshot (Japanese)"> <img src="docs/screenshot-en.png" width="266" alt="screenshot (English)">
+
 ## インストール / Install
 
 1. [Releases](https://github.com/atsushi4649/tasks-sync-rainmeter/releases) から `TasksSync_x.y.z.rmskin` をダウンロードしてダブルクリック
