@@ -39,6 +39,13 @@ Windows 10: `IconFont=Segoe MDL2 Assets`
 Rainmeter の WebParser は POST / PATCH / DELETE や OAuth を扱えないため、通信は同梱の PowerShell スクリプト（`@Resources\Scripts\GTasks.ps1`）が担当し、RunCommand プラグイン経由で呼び出します。スクリプトが表示用の `.inc` を生成してスキンを更新します。
 Rainmeter's WebParser can't do POST/PATCH/DELETE or OAuth, so a bundled PowerShell script handles the API via the RunCommand plugin and regenerates the skin's `.inc` files.
 
+## 応援 / Support
+
+気に入ったら、コーヒー 1 杯分の応援をいただけるとうれしいです。
+If you like it, you can buy me a coffee.
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/atsushi4649)
+
 ## License
 
 MIT
