@@ -41,18 +41,20 @@
 <li>終了:「<strong>Google API サービス: ユーザーデータに関するポリシーに同意します</strong>」に<strong>チェック</strong>を入れて「続行」→「作成」
   <ul><li>Google の API を使うアプリの作り手としての決まりごとに同意する項目です。自分で使うだけなら、特に気にすることはありません</li></ul></li>
 </ol>
-<p class="muted">ロゴはアップロードしないでください（Google の審査が必要になります）。</p>
 
 <h2>4. アプリを「本番環境」にする</h2>
 <p>作ったアプリは最初「テスト中」で、そのままではログインできません。本番環境に切り替えます（自分専用なので Google の審査は不要です）。</p>
 <ol>
-<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/auth/branding" target="_blank">ブランディングのページを開く ↗</a></li>
-<li>次の 3 つを入力して、いちばん下の「<strong>保存</strong>」を押す
+<li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/auth/branding" target="_blank">ブランディングのページを開く ↗</a>
+  <ul><li>「アプリのロゴ」は<strong>アップロードしないでください</strong>（ロゴを入れると Google の審査が必要になります）</li></ul></li>
+<li>「アプリのドメイン」の欄に、次の 2 つをコピーして貼り付ける
   <ul>
   <li>アプリケーションのホームページ: <code>https://atsushi4649.github.io/tasks-sync-rainmeter/</code></li>
   <li>アプリケーション プライバシー ポリシー リンク: <code>https://atsushi4649.github.io/tasks-sync-rainmeter/privacy.html</code></li>
-  <li>承認済みドメイン（「+ ドメインの追加」）: <code>atsushi4649.github.io</code></li>
-  </ul></li>
+  </ul>
+  <span class="muted">（利用規約のリンクは空欄のままで OK）</span></li>
+<li>「承認済みドメイン」の「<strong>+ ドメインの追加</strong>」を押して、<code>atsushi4649.github.io</code> を入力</li>
+<li>いちばん下の「<strong>保存</strong>」を押す</li>
 <li>このボタンを押す → <a class="btn" href="https://console.cloud.google.com/auth/audience" target="_blank">対象のページを開く ↗</a></li>
 <li>「<strong>アプリを公開</strong>」→「確認」を押す</li>
 <li>公開ステータスが「<strong>本番環境</strong>」になれば OK</li>
@@ -68,8 +70,14 @@
 <h2>6. ログイン</h2>
 <ol>
 <li>スキン右上の <strong>⟳（同期ボタン）</strong>を押す → ダウンロード フォルダの JSON が自動で読み込まれ、「クリックして Google にログイン」に変わります</li>
-<li>クリック → ブラウザで許可</li>
-<li>「Google はこのアプリを確認していません」と出たら「<strong>続行</strong>」（または「詳細」→「安全ではないページに移動」）。自分で作ったアプリなので問題ありません</li>
+<li>そこをクリックすると、ブラウザで Google のログイン画面が開きます。自分のアカウントを選ぶ</li>
+<li>「<strong>このアプリは Google で確認されていません</strong>」という警告が出ます。あなた自身が作ったアプリなので問題ありません。次のように進みます
+  <ul>
+  <li><strong>左下</strong>の「<strong>詳細</strong>」を押す（本文の中の「詳細」ではありません）</li>
+  <li>下に出てくる「<strong>Tasks Sync（安全ではないページ）に移動</strong>」を押す</li>
+  </ul></li>
+<li>「Tasks Sync が Google アカウントへのアクセスを求めています」の画面で「<strong>続行</strong>」を押す（チェックボックスがあればチェックを入れてから）</li>
+<li>ブラウザに「ログインしました」と出たら、タブを閉じて OK</li>
 <li>タスクが表示されたら完了です 🎉</li>
 </ol>
 
@@ -89,10 +97,10 @@
 <ol>
 <li><a href="https://console.cloud.google.com/projectcreate" target="_blank">Create a project</a> (e.g. <code>rainmeter-tasks</code>). Location: <strong>"No organization" is fine</strong>. Make sure it is selected. (A personal Google account works; free, no credit card.)</li>
 <li>Enable the <a href="https://console.cloud.google.com/apis/library/tasks.googleapis.com" target="_blank">Google Tasks API</a>.</li>
-<li>Open the <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth consent screen</a> → Get started → app name <code>Tasks Sync</code>, your email, Audience <strong>External</strong>, contact email, then <strong>check "I agree to the Google API Services: User Data Policy"</strong> → Continue → Create. Do not upload a logo.</li>
+<li>Open the <a href="https://console.cloud.google.com/apis/credentials/consent" target="_blank">OAuth consent screen</a> → Get started → app name <code>Tasks Sync</code>, your email, Audience <strong>External</strong>, contact email, then <strong>check "I agree to the Google API Services: User Data Policy"</strong> → Continue → Create.</li>
 <li><strong>Switch the app to production:</strong> on <a href="https://console.cloud.google.com/auth/branding" target="_blank">Branding</a> set Homepage <code>https://atsushi4649.github.io/tasks-sync-rainmeter/</code>, Privacy policy <code>https://atsushi4649.github.io/tasks-sync-rainmeter/privacy.html</code>, authorized domain <code>atsushi4649.github.io</code> → Save. Then on <a href="https://console.cloud.google.com/auth/audience" target="_blank">Audience</a> click <strong>Publish app</strong>. (No review is needed for personal use. While the app is in Testing you get "Error 403: access_denied".)</li>
 <li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">Credentials</a> → Create credentials → OAuth client ID (or Clients → Create client) → <strong>Desktop app</strong> → <strong>Download JSON</strong>.</li>
-<li>Press the <strong>⟳</strong> button on the skin (the JSON is picked up from Downloads) → click "Click to sign in to Google" → allow. On "Google hasn't verified this app", choose <strong>Continue</strong>.</li>
+<li>Press the <strong>⟳</strong> button on the skin (the JSON is picked up from Downloads) → click "Click to sign in to Google" → allow. On "Google hasn't verified this app", click <strong>Advanced</strong> (bottom left) → <strong>Go to Tasks Sync (unsafe)</strong>, then <strong>Continue</strong>. Do not upload a logo on Branding (it triggers a review).</li>
 </ol>
 <p>If you can't publish, add your address under Audience → Test users instead (sign-in then expires every 7 days).</p><p>Sign out: revoke at <a href="https://myaccount.google.com/permissions">Google Account permissions</a> and delete <code>%APPDATA%\Rainmeter\TasksSync</code>.</p>
 </main>
