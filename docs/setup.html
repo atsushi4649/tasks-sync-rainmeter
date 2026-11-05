@@ -86,6 +86,7 @@
 <li><strong>「アクセスをブロック」「403: access_denied」</strong> … アプリが「テスト中」のままです。手順 4 で「本番環境」になっているか確認してください</li>
 <li><strong>「アプリを公開」が押せない</strong> … 手順 4 のブランディングの 3 項目が保存されているか確認してください。どうしても公開できない場合は、「対象」→「テストユーザー」→「+ Add users」で自分のアドレスを追加すればログインできます（この場合は 7 日ごとに再ログインが必要です）</li>
 <li><strong>JSON が読み込まれない</strong> … スキンを右クリック → データフォルダを開く → そこに <code>client_secret_〜.json</code> を置いて ⟳</li>
+<li><strong>日付が表示されない</strong> … スキンに表示されるのは Google Tasks の「<strong>日時</strong>」（カレンダーのアイコン）です。「<strong>期限</strong>」（的のアイコン、「今日が期限」など）は Google の API から取得できないため表示されません</li>
 <li><strong>右上に ! が出る</strong> … マウスを乗せるとエラー内容が出ます。<a href="https://github.com/atsushi4649/tasks-sync-rainmeter/issues">Issues</a> で教えてください</li>
 <li><strong>ログアウトしたい</strong> … <a href="https://myaccount.google.com/permissions">Google アカウントのアクセス権</a>から取り消し、<code>%APPDATA%\Rainmeter\TasksSync</code> を削除</li>
 </ul>
@@ -102,7 +103,8 @@
 <li><a href="https://console.cloud.google.com/apis/credentials" target="_blank">Credentials</a> → Create credentials → OAuth client ID (or Clients → Create client) → <strong>Desktop app</strong> → <strong>Download JSON</strong>.</li>
 <li>Press the <strong>⟳</strong> button on the skin (the JSON is picked up from Downloads) → click "Click to sign in to Google" → allow. On "Google hasn't verified this app", click <strong>Advanced</strong> (bottom left) → <strong>Go to Tasks Sync (unsafe)</strong>, then <strong>Continue</strong>. Do not upload a logo on Branding (it triggers a review).</li>
 </ol>
-<p>If you can't publish, add your address under Audience → Test users instead (sign-in then expires every 7 days).</p><p>Sign out: revoke at <a href="https://myaccount.google.com/permissions">Google Account permissions</a> and delete <code>%APPDATA%\Rainmeter\TasksSync</code>.</p>
+<p>If you can't publish, add your address under Audience → Test users instead (sign-in then expires every 7 days).</p><p>Due dates: the skin shows a task's <strong>date</strong> (calendar icon). The newer <strong>deadline</strong> (target icon) is not available through the Google Tasks API, so it can't be shown.</p>
+<p>Sign out: revoke at <a href="https://myaccount.google.com/permissions">Google Account permissions</a> and delete <code>%APPDATA%\Rainmeter\TasksSync</code>.</p>
 </main>
 </body>
 </html>

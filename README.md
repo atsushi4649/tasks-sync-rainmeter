@@ -14,6 +14,12 @@ A Rainmeter skin for **two-way** Google Tasks on your Windows desktop.
 
 必要なもの / Requirements: Rainmeter 4.4+, Windows 10/11 (PowerShell 5.1 は標準搭載 / built in)
 
+## 制限 / Limitations
+
+- 日付は Google Tasks の「日時」（カレンダーのアイコン）を表示します。「期限」（的のアイコン）は Google Tasks API から取得できないため表示されません。
+  Shows a task's *date* (calendar icon). The newer *deadline* (target icon) isn't exposed by the Google Tasks API.
+- 時刻は表示されません（API が日付しか返さないため）。 / Times aren't shown (the API returns dates only).
+
 ## 設定 / Settings
 
 スキンを右クリック →「設定を編集」で `Variables.inc` が開きます（言語・幅・表示件数・同期間隔・色）。
